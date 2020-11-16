@@ -10,6 +10,9 @@ public class GameScript : MonoBehaviour
     int min;
     int guess;
     public Text textGuess;
+    public Button btnHigher;
+    public Button btnLower;
+    public Button btnCorrect;
 
     // Start is called before the first frame update
     void Start()
@@ -17,32 +20,32 @@ public class GameScript : MonoBehaviour
         max = 100;
         min = 1;
         guess = 50;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        btnHigher.onClick.AddListener(Higher);
+        btnLower.onClick.AddListener(Lower);
+        btnCorrect.onClick.AddListener(Correct);
+    }
+    void Higher()
         {
             min = guess;
             guessNext();
             Debug.Log("Higher");
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+    void Lower()
         {
             max = guess;
             guessNext();
             Debug.Log("Lower");
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+    void Correct()
         {
             Debug.Log("correct Guess");
             SceneManager.LoadScene("FinishedScene", LoadSceneMode.Single);
         }
 
-    }
+
 
     void guessNext()
     {
